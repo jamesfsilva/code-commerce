@@ -11,5 +11,11 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-Route::get('/exemplo', 'WelcomeController@exemplo');
+Route::group(['prefix' => 'categories'], function(){
+    get('/',['as' => 'categories.index', 'uses' =>  'CategoriesController@index']);
+    get('/create',['as' => 'categories.create', 'uses' =>  'CategoriesController@create']);
+    post('/save',['as' => 'categories.save', 'uses' =>  'CategoriesController@save']);
+    get('/{id}/edit',['as' => 'categories.edit', 'uses' =>  'CategoriesController@edit']);
+    put('/{id}/update',['as' => 'categories.update', 'uses' =>  'CategoriesController@update']);
+    get('/{id}/delete',['as' => 'categories.delete', 'uses' =>  'CategoriesController@delete']);
+});

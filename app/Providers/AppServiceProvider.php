@@ -1,6 +1,6 @@
 <?php
 
-namespace Loja\Providers;
+namespace CodeCommerce\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
