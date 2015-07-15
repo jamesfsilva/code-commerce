@@ -6,7 +6,7 @@ use CodeCommerce\Category;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
 
-class CategoriesController extends Controller
+class AdminCategoriesController extends Controller
 {
     private $categoryModel;
 

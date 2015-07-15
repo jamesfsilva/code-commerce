@@ -11,11 +11,22 @@
 |
 */
 
-Route::group(['prefix' => 'categories'], function(){
-    get('/',['as' => 'categories.index', 'uses' =>  'CategoriesController@index']);
-    get('/create',['as' => 'categories.create', 'uses' =>  'CategoriesController@create']);
-    post('/save',['as' => 'categories.save', 'uses' =>  'CategoriesController@save']);
-    get('/{id}/edit',['as' => 'categories.edit', 'uses' =>  'CategoriesController@edit']);
-    put('/{id}/update',['as' => 'categories.update', 'uses' =>  'CategoriesController@update']);
-    get('/{id}/delete',['as' => 'categories.delete', 'uses' =>  'CategoriesController@delete']);
+Route::group(['prefix' => 'admin/products'], function(){
+    get('/',['as' => 'products.index', 'uses' =>  'AdminProductsController@index']);
+    get('/create',['as' => 'products.create', 'uses' =>  'AdminProductsController@create']);
+    post('/save',['as' => 'products.save', 'uses' =>  'AdminProductsController@save']);
+    get('/{id}/edit',['as' => 'products.edit', 'uses' =>  'AdminProductsController@edit']);
+    put('/{id}/update',['as' => 'products.update', 'uses' =>  'AdminProductsController@update']);
+    get('/{id}/delete',['as' => 'products.delete', 'uses' =>  'AdminProductsController@delete']);
 });
+
+
+Route::group(['prefix' => 'admin/categories'], function(){
+    get('/',['as' => 'categories.index', 'uses' =>  'AdminCategoriesController@index']);
+    get('/create',['as' => 'categories.create', 'uses' =>  'AdminCategoriesController@create']);
+    post('/save',['as' => 'categories.save', 'uses' =>  'AdminCategoriesController@save']);
+    get('/{id}/edit',['as' => 'categories.edit', 'uses' =>  'AdminCategoriesController@edit']);
+    put('/{id}/update',['as' => 'categories.update', 'uses' =>  'AdminCategoriesController@update']);
+    get('/{id}/delete',['as' => 'categories.delete', 'uses' =>  'AdminCategoriesController@delete']);
+});
+
