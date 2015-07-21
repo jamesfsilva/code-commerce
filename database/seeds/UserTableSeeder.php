@@ -8,13 +8,13 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use CodeCommerce\Product;
+use CodeCommerce\User;
 
-class ProductTableSeeder extends Seeder {
+class UserTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('products')->truncate();
-        factory(CodeCommerce\Product::class, 50)->create();
+        DB::table('users')->truncate();
+        factory(CodeCommerce\User::class, 5)->create();
     }
 }

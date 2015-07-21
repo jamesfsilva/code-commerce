@@ -33,6 +33,7 @@ $factory->define(CodeCommerce\Product::class, function ($faker) {
         'description' => $faker->sentence,
         'price' => $faker->randomNumber(2),
         'featured' => $faker->boolean(1),
-        'recommend' => $faker->boolean(1)
+        'recommend' => $faker->boolean(1),
+        'category_id' => $faker->numberBetween(1,15)
     ];
 });
