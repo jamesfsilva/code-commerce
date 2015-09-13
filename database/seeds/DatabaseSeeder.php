@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call('ProductTableSeeder');
 
         Model::reguard();
+        
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
