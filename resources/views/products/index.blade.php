@@ -14,6 +14,7 @@
                             <th>Nome</th>
                             <th>Descrição</th>
                             <th>Preço</th>
+                            <th>Category</th>
                             <th>Featured</th>
                             <th>Recommended</th>
                             <th>Action</th>
@@ -26,16 +27,20 @@
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->description }}</td>
                             <td>R$ {{ number_format($product->price,2,',','.') }}</td>
+                            <td>{{ $product->category->name }}</td>
                             <td>{{ $product->featured ? 'Sim' : 'Não' }}</td>
                             <td>{{ $product->recommend ? 'Sim' : 'Não' }}</td>
                             <td>
                                 <a href="{{ route('products.edit', ['id' => $product->id])  }}">Editar</a> |
+                                <a href="{{ route('products.images', ['id' => $product->id])  }}">Imagens</a> |
                                 <a href="{{ route('products.delete', ['id' => $product->id])  }}">Delete</a>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
+                
+                {!! $products->render() !!}
             </div>
         </div>
     </div>

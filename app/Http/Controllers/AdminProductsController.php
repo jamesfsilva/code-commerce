@@ -74,41 +74,71 @@ class AdminProductsController extends Controller
 
     public function delete($id)
     {
-        $this->productModel->find($id)->delete();
+        $product = $this->productModel->find($id);
+
+        foreach($product->images as $image){
+
+            $filename = $image->id.'.'.$image->extension;
+
+            if(Storage::disk('local_public')->exists($filename)){
+                Storage::disk('local_public')->delete($filename);
+            }
+
+            $image->delete();
+        }
+
+        $product->delete();
 
         return redirect()->route('products.index');
     }
     
-    public function images($productId)
+    public function images($id)
     {
-        $product = $this->productModel->find($productId);
+        $product = $this->productModel->find($id);
         
         return view('products.images.index', [
             'product' => $product
         ]);
     }
     
-    public function imagesCreate($productId)
+    public function imagesCreate($id)
     {
-        $product = $this->productModel->find($productId);
+        $product = $this->productModel->find($id);
         
         return view('products.images.create', [
             'product' => $product
         ]);
     }
     
-    public function imagesSave(Request $request, $productId, ProductImage $productImage)
+    public function imagesSave(Requests\ProductImageRequest $request, $id, ProductImage $productImage)
     {
         $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
         
         $image = $productImage->create([
-            'product_id' => $productId,
+            'product_id' => $id,
             'extension' => $extension
         ]);
         
         Storage::disk('local_public')->put($image->id.'.'.$extension, File::get($file));
 
-        return redirect()->route('products.images',['productId'=>$productId]);
+        return redirect()->route('products.images',['id'=>$id]);
+    }
+    
+    public function imagesDelete(ProductImage $productImage, $id)
+    {
+        $image = $productImage->find($id);
+
+        $filename = $image->id . '.' . $image->extension;
+
+        if (Storage::disk('local_public')->exists($filename)) {
+            Storage::disk('local_public')->delete($filename);
+        }
+
+        $product = $image->product;
+        $image->delete();
+
+        return redirect()->route('products.images',['id'=>$product->id]);
+
     }
 }
