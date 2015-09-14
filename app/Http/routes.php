@@ -24,10 +24,10 @@ Route::group(['prefix' => 'admin', 'where' => ['id' => '[0-9]+']], function(){
         get('{id}/delete',['as' => 'products.delete', 'uses' =>  'AdminProductsController@delete']);
         
             Route::group(['prefix' => 'images'], function(){
-               get('{id}',['as' => 'products.images', 'uses' =>  'AdminProductsController@images']);
-               get('{id}/create',['as' => 'products.images.create', 'uses' =>  'AdminProductsController@imagesCreate']);
-               post('{id}/save/',['as' => 'products.images.save', 'uses' =>  'AdminProductsController@imagesSave']);
-               get('{id}/delete',['as' => 'products.images.delete', 'uses' =>  'AdminProductsController@imagesDelete']);
+               get('{id}/product',['as' => 'products.images', 'uses' =>  'AdminProductsController@images']);
+               get('create/{id}/product',['as' => 'products.images.create', 'uses' =>  'AdminProductsController@imagesCreate']);
+               post('save/{id}/product',['as' => 'products.images.save', 'uses' =>  'AdminProductsController@imagesSave']);
+               get('detele/{id}/image',['as' => 'products.images.delete', 'uses' =>  'AdminProductsController@imagesDelete']);
             });
     });
 
